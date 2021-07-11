@@ -1,0 +1,500 @@
+  123  vi menu.service.js 
+  124  vi bitbns.service.js 
+  125  vi ../routes/bitbns.service.js
+  126  vi ../index.js 
+  127  ls -lrt
+  128  ls -lrt
+  129  cd ../../../
+  130  cd PROJECTS/cryptos/
+  131  ls -lrt
+  132  curl https://api.binance.com/api/v3/ticker/price > binance.json
+  133  cat binance.json | /usr/local/bin/jq -r '.data[] | [."symbol", ."price"] |@csv'
+  134  cat binance.json | /usr/local/bin/jq -r '.[] | [."symbol", ."price"] |@csv'
+  135  cat binance.json | /usr/local/bin/jq -r '.[] | [."symbol", ."price"] |@csv' | grep -i usdt
+  136  cat binance.json | /usr/local/bin/jq -r '.[] | [."symbol", ."price"] |@csv' | grep -i usdt
+  137  cat wazirx.json | jq | head
+  138  cat wazirx.json | jq | head -20
+  139  cat wazirx.json | jq | head -30
+  140  cat wazirx.json | /usr/local/bin/jq -r '.[markets] | [."baseMarket", ."quoteMarket", ."last"] |@csv' | grep -i usdt
+  141  cat wazirx.json | /usr/local/bin/jq -r '.markets[] | [."baseMarket", ."quoteMarket", ."last"] |@csv' |
+  142  cat wazirx.json | /usr/local/bin/jq -r '.markets[] | [."baseMarket", ."quoteMarket", ."last"] |@csv' 
+  143  cat wazirx.json | /usr/local/bin/jq -r '.markets[] | [."baseMarket", ."quoteMarket", ."last"] |@csv'  | awk 'NF>2'
+  144  cat wazirx.json | /usr/local/bin/jq -r '.markets[] | [."baseMarket", ."quoteMarket", ."last"] |@csv'  | awk '{NF>2}'
+  145  cat wazirx.json | /usr/local/bin/jq -r '.markets[] | [."baseMarket", ."quoteMarket", ."last"] |@csv'  | awk '{} END{NF>2}'
+  146  cat wazirx.json | /usr/local/bin/jq -r '.markets[] | [."baseMarket", ."quoteMarket", ."last"] |@csv'  | awk ' END{NF>2}'
+  147  cat wazirx.json | /usr/local/bin/jq -r '.markets[] | [."baseMarket", ."quoteMarket", ."last"] |@csv'  | grep -i "\"usdt\","
+  148  cat wazirx.json | /usr/local/bin/jq -r '.markets[] | [."baseMarket", ."quoteMarket", ."last"] |@csv'  | grep -i ""usdt","
+  149  cat wazirx.json | /usr/local/bin/jq -r '.markets[] | [."baseMarket", ."quoteMarket", ."last"] |@csv'  | grep -i "/"usdt","
+  150  cat wazirx.json | /usr/local/bin/jq -r '.markets[] | [."baseMarket", ."quoteMarket", ."last"] |@csv'  | grep -i '"usdt",'
+  151  cat wazirx.json | /usr/local/bin/jq -r '.markets[] | [."baseMarket", ."quoteMarket", ."last"] |@csv'  | grep -i '"usdt","'
+  152  cat wazirx.json | /usr/local/bin/jq -r '.markets[] | [."baseMarket", ."quoteMarket", ."last"] |@csv'  | grep -i '"usdt","[0-9]'
+  153  cat wazirx.json | /usr/local/bin/jq -r '.markets[] | [."baseMarket", ."quoteMarket", ."last"] |@csv'  | grep -i '"usdt","[0-9]'
+  154  cat binance.json | /usr/local/bin/jq -r '.[] | [."symbol", ."price"] |@csv' | grep -i usdt
+  155  curl https://bitbns.com/order/getTickerWithVolume/ > bitbns.json
+  156  cat bitbns.json | jq
+  157  cat bitbns.json | jq | sed -e 's/},/|/g' | head
+  158  cat bitbns.json | jq | sed -e 's/},/|/g' | head -20
+  159  cat bitbns.json | jq | sed -e 's/},/|/g' | tr "\n" ""
+  160  cat bitbns.json | jq | sed -e 's/},/|/g' | tr "\n" "~" | head
+  161  cat bitbns.json | jq | sed -e 's/},/|/g' | tr "\n" "~" | tr -s "|" "\n"
+  162  cat bitbns.json | jq | sed -e 's/},/|/g' | tr "\n" "~" | tr -s "|" "\n" | head
+  163  cat bitbns.json | jq | sed -e 's/},/|/g' | tr "\n" "~" | tr -s "|" "\n" | egrep -i [0-9]usdt
+  164  cat bitbns.json | jq | sed -e 's/},/|/g' | tr "\n" "~" | tr -s "|" "\n" | egrep -i [0-9]*usdt
+  165  cat bitbns.json | jq | sed -e 's/},/|/g' | tr "\n" "~" | tr -s "|" "\n" | egrep -i [A-Z]*usdt
+  166  cat bitbns.json | jq | sed -e 's/},/|/g' | tr "\n" "~" | tr -s "|" "\n" | egrep -i [A-Z]*usdt | head
+  167  cat bitbns.json | jq | sed -e 's/},/|/g' | tr "\n" "~" | tr -s "|" "\n" | egrep -i [A-Z]*usdt | head
+  168  cat bitbns.json | jq | sed -e 's/},/|/g' | tr "\n" "~" | tr -s "|" "\n" | egrep -i [A-Z]*usdt | head | cut -d "~" -f1
+  169  cat bitbns.json | jq | sed -e 's/},/|/g' | tr "\n" "~" | tr -s "|" "\n" | egrep -i [A-Z]*usdt | head | cut -d "~" -f2
+  170  cat bitbns.json | jq | sed -e 's/},/|/g' | tr "\n" "~" | tr -s "|" "\n" | egrep -i [A-Z]*usdt | head | cut -d "~" -f2,5
+  171  cat bitbns.json | jq | sed -e 's/},/|/g' | tr "\n" "~" | tr -s "|" "\n" | egrep -i [A-Z]*usdt | head | cut -d "~" -f2,5 | sed -e 's/: {~/,/g'
+  172  cat bitbns.json | jq | sed -e 's/},/|/g' | tr "\n" "~" | tr -s "|" "\n" | egrep -i [A-Z]*usdt | head | cut -d "~" -f2,5 | sed -e 's/: {~/,/g' -e 's/"last_traded_price": //g'
+  173  cat bitbns.json | jq | sed -e 's/},/|/g' | tr "\n" "~" | tr -s "|" "\n" | egrep -i [A-Z]*usdt | head | cut -d "~" -f2,5 | sed -e 's/: {~/,/g' -e 's/"last_traded_price": //g' | tr -s " "
+  174  cat bitbns.json | jq | sed -e 's/},/|/g' | tr "\n" "~" | tr -s "|" "\n" | egrep -i [A-Z]*usdt | head | cut -d "~" -f2,5 | sed -e 's/: {~/,/g' -e 's/"last_traded_price": //g' | tr -s " " | head
+  175  cat binance.json | /usr/local/bin/jq -r '.[] | [."symbol", ."price"] |@csv' | grep -i usdt | head
+  176  cat bitbns.json | jq | sed -e 's/},/|/g' | tr "\n" "~" | tr -s "|" "\n" | egrep -i [A-Z]*usdt  | cut -d "~" -f2,5 | sed -e 's/: {~/,/g' -e 's/"last_traded_price": //g' | tr -s " " | sed -e 's/"//g'
+  177  curl https://bitbns.com/order/getTickerWithVolume/ > bitbns.json
+  178  history | grep -i curl | grep -i wa
+  179  history | grep -i curl | grep -i waz
+  180  history | grep -i curl 
+  181  cat binance.json | /usr/local/bin/jq -r '.[] | [."symbol", ."price"] |@csv' | grep -i usdt | sed -e 's/"//g' > binance.csv
+  182  ls -lrt
+  183  cat binance.csv 
+  184  curl https://api.wazirx.com/api/v2/market-status | /usr/local/bin/jq -r '.markets[] | [."baseMarket", ."quoteMarket", ."last"] |@csv'  | grep -i '"usdt","[0-9]' | sed -e 's/"//g' > wazirx.csv
+  185  ls -lrt
+  186  cat wazirx.csv 
+  187  cat wazirx.csv  | cut -d "," -f12
+  188  cat wazirx.csv  | cut -d "," -f1-2
+  189  cat wazirx.csv  | sed -e 's/,usdt/usdt/g'
+  190  cat wazirx.csv  | sed -e 's/,usdt/usdt/g' | cut -d , -f1
+  191  cat wazirx.csv  | sed -e 's/,usdt/usdt/g' | cut -d , -f1 > coins
+  192  while read -r line ; do  w=`grep -i $line wazirx.csv | cut -d, -f2`; b=grep -i $line binance.csv | cut -d, -f2`
+  193  bb=`grep -i $line bitbns.csv | cut -d, -f2`
+  194  echo "$line,$w,$b,$bb" > market_data.csv
+  195  done < coins
+  196  head bitbns.csv
+  197  curl https://bitbns.com/order/getTickerWithVolume/ | jq | sed -e 's/},/|/g' | tr "\n" "~" | tr -s "|" "\n" | egrep -i [A-Z]*usdt  | cut -d "~" -f2,5 | sed -e 's/: {~/,/g' -e 's/"last_traded_price": //g' | tr -s " " | sed -e 's/"//g'
+  198  cat curl https://api.binance.com/api/v3/ticker/price | /usr/local/bin/jq -r '.[] | [."symbol", ."price"] |@csv' | grep -i usdt | sed -e 's/"//g'
+  199   curl https://api.binance.com/api/v3/ticker/price | /usr/local/bin/jq -r '.[] | [."symbol", ."price"] |@csv' | grep -i usdt | sed -e 's/"//g'
+  200  curl https://api.wazirx.com/api/v2/market-status | /usr/local/bin/jq -r '.markets[] | [."baseMarket", ."quoteMarket", ."last"] |@csv'  | grep -i '"usdt","[0-9]' | sed -e 's/"//g' -e 's/,usdt/usdt/g'
+  201  curl https://api.wazirx.com/api/v2/market-status | /usr/local/bin/jq -r '.markets[] | [."baseMarket", ."quoteMarket", ."last"] |@csv'  | grep -i '"usdt","[0-9]' | sed -e 's/"//g' -e 's/,usdt/usdt/g' > wazirx.csv
+  202  curl https://bitbns.com/order/getTickerWithVolume/ | jq | sed -e 's/},/|/g' | tr "\n" "~" | tr -s "|" "\n" | egrep -i [A-Z]*usdt  | cut -d "~" -f2,5 | sed -e 's/: {~/,/g' -e 's/"last_traded_price": //g' | tr -s " " | sed -e 's/"//g' > bitbns.csv
+  203  curl https://api.binance.com/api/v3/ticker/price | /usr/local/bin/jq -r '.[] | [."symbol", ."price"] |@csv' | grep -i usdt | sed -e 's/"//g' > binance.csv
+  204  echo "COIN,WAZIRX,BINANCE,BITBNS" >> market_data.csv
+  205  while read -r line ; do   w=`grep -i $line wazirx.csv | cut -d, -f2`; b=`grep -i $line binance.csv | cut -d, -f2`; bb=`grep -i $line bitbns.csv | cut -d, -f2`; echo "$line,$w,$b,$bb" >> market_data.csv; done < coins
+  206  ls -lrt
+  207  cat market_data.csv 
+  208  pwd
+  209  cat ../stockmarket/dashboard/stock/dashboard.sh 
+  210  cat ../stockmarket/dashboard/stock/nifty.sh 
+  211  cat market_data.csv curl https://api.wazirx.com/api/v2/market-status | /usr/local/bin/jq -r '.markets[] | [."baseMarket", ."quoteMarket", ."last"] |@csv'  | grep -i '"usdt","[0-9]' | sed -e 's/"//g' -e 's/,usdt/usdt/g' > wazirx.csv
+  212  curl https://bitbns.com/order/getTickerWithVolume/ | jq | sed -e 's/},/|/g' | tr "\n" "~" | tr -s "|" "\n" | egrep -i [A-Z]*usdt  | cut -d "~" -f2,5 | sed -e 's/: {~/,/g' -e 's/"last_traded_price": //g' | tr -s " " | sed -e 's/"//g' > bitbns.csv
+  213  curl https://api.binance.com/api/v3/ticker/price | /usr/local/bin/jq -r '.[] | [."symbol", ."price"] |@csv' | grep -i usdt | sed -e 's/"//g' > binance.csv
+  214  echo "COIN,WAZIRX,BINANCE,BITBNS" >> market_data.csv
+  215  while read -r line ; do   w=`grep -i $line wazirx.csv | cut -d, -f2`; b=`grep -i $line binance.csv | cut -d, -f2`; bb=`grep -i $line bitbns.csv | cut -d, -f2`; echo "$line,$w,$b,$bb" >> market_data.csv; done < coins
+  216  cat market_data.csv | awk -v OFMT="%5.2f%" -F, '{ OFS=","} { print $1,$2,$3,$4,$2-$3,$2-$4,$3-$2,$3-$4,$4-$2,$4-$3}'
+  217  ls -lrt
+  218  git clone https://github.com/asmab/vuejs-github-api.git
+  219  cd vuejs-github-api/
+  220  ls -lrt
+  221  npm install
+  222  pwd
+  223  cd ..
+  224  ls -lrt
+  225  rm -rf vuejs-github-api/
+  226  git clone https://github.com/KonradLinkowski/smovie.git
+  227  cd smovie/
+  228  ls -lrt
+  229  npm install
+  230  npm run dev
+  231  npm run dev
+  232  HOST=0 npm run dev
+  233  HOST=0 npm run dev
+  234  HOST=0 npm run dev
+  235  HOST=0 npm run dev
+  236  HOST=0 npm run dev
+  237  HOST=0 npm run dev
+  238  HOST=0 npm run dev
+  239  HOST=0 npm run dev
+  240  HOST=0 npm run dev
+  241  HOST=0 npm run dev
+  242  pwd
+  243  cd ../../../
+  244  ls -lrt
+  245  cd Pr
+  246  cd PROJECTS/
+  247  ls -lrt
+  248  cd ~/MYBACKUP/BACKUP/listing/
+  249  ls -lrt
+  250  cd app/
+  251  l s-lrt
+  252  ls -lrt
+  253  cd stream-app
+  254  npm run serve
+  255  cd ..
+  256  l s-lrt
+  257  ls -rlt
+  258  cd ..
+  259  l s-lrt
+  260  ls -rlt
+  261  cd jw
+  262  ls -lrt
+  263  ls -lrt *.sh
+  264  cat jw_new.sh
+  265  vi all.sh
+  266  cat all.conf 
+  267  ls -lrt
+  268  ls -lrt *.sh
+  269  cat all.sh 
+  270  cat jw_new.sh
+  271  cat all.conf 
+  272  vi new.conf
+  273  vi n
+  274  cat n | egrep -i usdt
+  275  cat n | egrep -i usdt | egrep -vi "up|down"
+  276  cat n | egrep -i usdt | egrep -vi "up|down|bull|bear"
+  277  cat n | egrep -i usdt | egrep -vi "up|down|bull|bear" | wc -l
+  278  vi n
+  279  cat n | awk -F " " { print $1, $2}
+  280  cat n | awk -F " " '{ print $1, $2}'
+  281  cat n | awk -F "\t" '{ print $1, $2}'
+  282  cat n | awk -F "\t" '{ print $1, $3}'
+  283  cat n | awk -F "\t" '{ print $1, $2}'
+  284  cat n | awk -F "\t" '{ print $2 $4}'
+  285  cat n | awk -F "\t" '{ print $2 $3}'
+  286  vi n
+  287  cat n
+  288  vi n
+  289  cat n | sed -e 's/ /,/g'
+  290  vi n
+  291  cat n | head -1
+  292  cat n | head -1 | grep -c "Free"
+  293  cat n | head -1 
+  294  cat n | head -1 | tr -s "," "\n"
+  295  cat n | head -1 | tr -s "," "\n" | grep -c Free
+  296  sym=`cat n |head -1 | cut -d -f1`
+  297  sym=`cat n |head -1 | cut -d, -f1`
+  298  name=`cat n |head -1 | cut -d, -f2`
+  299  =`cat n |head -1 | cut -d, -f3`
+  300  name=`cat n |head -1 | cut -d, -f2`
+  301  echo "{\"symbol\":\"1INCH\""
+  302  s=1inch
+  303  echo "{\"symbol\":\"$s\"
+  304  "
+  305  n=1inch
+  306  echo "{\"symbol\":\"$s\",\"name\":\"$n\",\"fees\":{\"fee\":["
+  307  cat n | head -8 | tail -1
+  308  j=3
+  309  cat n | head -8 | tail -1 | cut -d "," -f$j
+  310  json={"symbol":"1inch","name":"1inch","fees":{"fee":[
+  311  trn=bep20
+  312  min=1
+  313  dep=Free
+  314  wid=10
+  315  echo "$json{\"trn\":\"$trn\",\"minimum\":$min,\"deposit\":\"$dep\",\"withdraw\":$wid},"
+  316  while read -r line ; do s=`echo $line | cut -d "," -f1`; n=`echo $line | cut -d "," -f2`;  json=`echo "{\"symbol\":\"$s\",\"name\":\"$n\",\"fees\":{\"fee\":[
+  317  c=`echo $line | tr -s "," "\n" | grep -c Free`
+  318  for (( i=1; i<=c; i++ ))
+  319  do  
+  320     j=3
+  321     trn=`echo $line | cut -d "," -f$j`
+  322     
+  323     j=$(( $j + $c ))
+  324     min=`echo $line | cut -d "," -f$j`
+  325     
+  326     j=$(( $j + $c ))
+  327     dep=`echo $line | cut -d "," -f$j`
+  328     
+  329     j=$(( $j + $c ))
+  330     wid=`echo $line | cut -d "," -f$j`
+  331      
+  332     json=`echo "$json{\"trn\":\"$trn\",\"minimum\":$min,\"deposit\":\"$dep\",\"withdraw\":$wid},"`
+  333  done
+  334  json=`echo "$json]}},"`
+  335  echo $json >> binance_fee.json
+  336  done < n
+  337  while read -r line ; do s=`echo $line | cut -d "," -f1`; n=`echo $line | cut -d "," -f2`;  json=`echo "{\"symbol\":\"$s\",\"name\":\"$n\",\"fees\":{\"fee\":["
+  338  c=`echo $line | tr -s "," "\n" | grep -c Free`
+  339  for (( i=1; i<=c; i++ ))
+  340  do  
+  341     j=3
+  342     trn=`echo $line | cut -d "," -f$j`
+  343     
+  344     j=$(( $j + $c ))
+  345     min=`echo $line | cut -d "," -f$j`
+  346     
+  347     j=$(( $j + $c ))
+  348     dep=`echo $line | cut -d "," -f$j`
+  349     
+  350     j=$(( $j + $c ))
+  351     wid=`echo $line | cut -d "," -f$j`
+  352      
+  353     json=`echo "$json{\"trn\":\"$trn\",\"minimum\":$min,\"deposit\":\"$dep\",\"withdraw\":$wid},"`
+  354  done
+  355  json=`echo "$json]}},"`
+  356  echo $json >> binance_fee.json
+  357  done < n
+  358  while read -r line ; do s=`echo $line | cut -d "," -f1`; n=`echo $line | cut -d "," -f2`;  json=`echo "{\"symbol\":\"$s\",\"name\":\"$n\",\"fees\":{\"fee\":["`;  c=`echo $line | tr -s "," "\n" | grep -c Free`;  for (( i=1; i<=c; i++ )); do      j=3;    trn=`echo $line | cut -d "," -f$j`;        j=$(( $j + $c ));    min=`echo $line | cut -d "," -f$j`;        j=$(( $j + $c ));    dep=`echo $line | cut -d "," -f$j`;        j=$(( $j + $c ));    wid=`echo $line | cut -d "," -f$j`;         json=`echo "$json{\"trn\":\"$trn\",\"minimum\":$min,\"deposit\":\"$dep\",\"withdraw\":$wid},"`; done;  json=`echo "$json]}},"`;  echo $json >> binance_fee.json;  done < n
+  359  vi binance_create_json.sh
+  360  rm binance_fee.json 
+  361  sh binance_create_json.sh 
+  362  head binance_fee.json 
+  363  cat binance_fee.json | sed -e 's/""/"/g'
+  364  cat binance_fee.json | sed -e 's/""/"/g' -e 's/},]}}/}]}}/g'
+  365  cat binance_fee.json | sed -e 's/""/"/g' -e 's/},]}}/}]}}/g'
+  366  vi m
+  367  cat m | grep -i symbol
+  368  cat m | grep -i symbol | wc -l
+  369  cat m | grep -i symbol | sed -e 's/"//g'
+  370  cat m | grep -i symbol | sed -e 's/"//g' | awk '{ print $NF}'
+  371  vi w
+  372  cat w | grep -i basemark
+  373  cat w | grep -i basemark | awk '{ print $NF}'
+  374  cat w | grep -i basemark | awk '{ print $NF}' | wcc -l
+  375  cat w | grep -i basemark | awk '{ print $NF}' | wc -l
+  376  vi wh
+  377  cat wh | grep -i market-name-text
+  378  cat wh | grep -i market-name-text | egrep -ow ">[a-z0-9]*<"
+  379  cat wh | grep -i market-name-text | egrep -ow ">[A-Za-z0-9]*<"
+  380  cat wh | grep -i market-name-text | egrep -iow ">[A-Za-z0-9]*<"
+  381  cat wh | grep -i market-name-text | egrep -iow ">[A-Za-z]*<"
+  382  cat wh | grep -i market-name-text | egrep -iow ">[A-Z]*<"
+  383  cat wh | grep -i market-name-text | egrep -iow ">[a-z]*<"
+  384  cat wh | grep -i market-name-text | sed -e 's/<span class="market-name-text">//g'
+  385  cat wh | grep -i market-name-text | sed -e 's/<span class="market-name-text">//g' -e 's/<span class="subtext">//g'
+  386  cat wh | grep -i market-name-text | sed -e 's/<span class="market-name-text">//g' -e 's/<span class="subtext">//g' -e 's:/usdt</span></span>::g'
+  387  cat wh | grep -i market-name-text | sed -e 's/<span class="market-name-text">//g' -e 's/<span class="subtext">//g' -e 's:/usdt</span></span>::g' | tr -s " "
+  388  cat wh | grep -i market-name-text | sed -e 's/<span class="market-name-text">//g' -e 's/<span class="subtext">//g' -e 's:/usdt</span></span>::g' -e 's/ //g'
+  389  cat wh | grep -i market-name-text | sed -e 's/<span class="market-name-text">//g' -e 's/<span class="subtext">//g' -e 's:/usdt</span></span>::g' -e 's/ //g' | tr -s :[lower] :[upper]
+  390  cat wh | grep -i market-name-text | sed -e 's/<span class="market-name-text">//g' -e 's/<span class="subtext">//g' -e 's:/usdt</span></span>::g' -e 's/ //g'
+  391  cat wh | grep -i market-name-text | sed -e 's/<span class="market-name-text">//g' -e 's/<span class="subtext">//g' -e 's:/usdt</span></span>::g' -e 's/ //g' -e 's/^/"/g' -e 's/$/",/g'
+  392  rm wh
+  393  cat w| grep -i quote
+  394  cat w| grep -i quoteMar
+  395  cat w| grep -i quoteMar| sort | uniq
+  396  curl https://api.coindcx.com/exchange/ticker
+  397  curl https://api.coindcx.com/exchange/ticker | jq
+  398  curl https://api.coindcx.com/exchange/ticker | jq | grep -A 15 BTCUSDT
+  399  curl https://api.coindcx.com/exchange/ticker | jq | grep -A 9 BTCUSDT
+  400  curl https://api.coindcx.com/exchange/ticker | jq | grep -A 9 BTCUSDT
+  401  curl https://api.coindcx.com/exchange/ticker | jq | grep -A 9 BTCUSDT
+  402  date ; curl https://api.coindcx.com/exchange/ticker | jq | grep -A 9 BTCUSDT
+  403  date ; curl https://api.coindcx.com/exchange/ticker | jq | grep -A 9 BTCUSDT
+  404  date ; curl https://api.coindcx.com/exchange/ticker | jq | grep -A 9 BTCUSDT
+  405  date ; curl https://api.coindcx.com/exchange/ticker | jq | grep -A 9 BTCUSDT
+  406  date ; curl https://api.coindcx.com/exchange/ticker | jq | grep -A 9 BTCUSDT
+  407  date ; curl https://api.coindcx.com/exchange/ticker | jq | grep -A 9 BTCUSDT
+  408  date ; curl https://api.coindcx.com/exchange/ticker | jq | grep -A 9 BTCUSDT
+  409  date ; curl https://api.coindcx.com/exchange/ticker | jq | grep -A 9 BTCUSDT
+  410  date ; curl https://api.coindcx.com/exchange/ticker | jq | grep -A 9 BTCUSDT
+  411  while (true) ; do sleep 5 ; date ; curl https://api.coindcx.com/exchange/ticker | jq | grep -A 9 BTCUSDTAI ; done
+  412  while (true) ; do   date ; curl https://api.coindcx.com/exchange/ticker | jq | grep -A 9 BTCUSDTAI ; done
+  413  while (true) ; do   date ; curl https://api.coindcx.com/exchange/ticker | jq | grep -A 9 BTCUSDTAI; sleep 5 ; done
+  414  while (true) ; do   date ; curl https://api.coindcx.com/exchange/ticker | jq | grep -A 9 BTCUSDTAI > btc; cat btc ;sleep 5 ; done
+  415  while (true) ; do   date ; curl https://api.coindcx.com/exchange/ticker | jq | grep -A 9 BTCUSDT ;sleep 5 ; done
+  416  while (true) ; do   date ; curl https://api.coindcx.com/exchange/ticker | jq | grep -A 9 BTCUSDT | grep last_price ;sleep 2 ; done
+  417  curl man
+  418  while (true) ; do   date ; curl -s https://api.coindcx.com/exchange/ticker | jq | grep -A 9 BTCUSDT | grep last_price ;sleep 2 ; done
+  419  while (true) ; do   date ; curl -s https://api.coindcx.com/exchange/ticker | jq | grep -A 9 BTCUSDT | grep last_price ;sleep 2 ; done
+  420  while (true) ; do   date ; curl -s https://api.coindcx.com/exchange/ticker | jq | grep -A 9 BTCUSDT | grep last_price ;sleep 2 ; done
+  421  curl -g GET 'https://api.binance.com/api/v3/exchangeInfo?symbols=["BTCUSDT","BNBBTC"]'
+  422  curl -g GET 'https://api.binance.com/api/v3/exchangeInfo?symbols=["BTCUSDT","BNBBTC"]'
+  423  vi binance
+  424  vi binance | egrep -i "USDT\",$|BTC\",$|ETH\",|BNB",$"
+  425  vi binance | egrep -i "USDT\",$|BTC\",$|ETH\",|BNB\",$"
+  426  vi binance | egrep -i "USDT\",$|BTC\",$|ETH\",|BNB\",$"
+  427  cat binance | egrep -i "USDT\",$|BTC\",$|ETH\",|BNB",$"
+  428  cat binance | egrep -i "USDT\",$|BTC\",$|ETH\",|BNB\",$" | wc -l
+  429  cat binance | egrep -i "USDT\",$|BTC\",$|ETH\",|BNB\",$" 
+  430  cat binance | egrep -i "USDT\",$|BTC\",$|ETH\",|BNB\",$" | egrep -vi "BULL|BEAR|UP|DOWN" | wc -l
+  431  cat binance | egrep -i "USDT\",$|BTC\",$|ETH\",|BNB\",$" | egrep -vi "BULL|BEAR|UP|DOWN" > binance_coins.json
+  432  vi binance_coins.json 
+  433  cat binance_coins.json | uniq | wc0l
+  434  cat binance_coins.json | uniq | wc -l
+  435  cat binance_coins.json 
+  436  cat binance_coins.json | wc -l
+  437  cat binance_coins.json | sort | uniq | wc -l
+  438  cat binance_coins.json | sort | uniq > binance_coins.json1
+  439  mv binance_coins.json1 binance_coins.json
+  440  git
+  441  pwd
+  442  cd ~/Downloads/
+  443  ls -lrt
+  444  cd lustria17
+  445  ls -lrt
+  446  cd lustria17/
+  447  ls -lrt
+  448  unzip g5plus-lustria-v1.7.zip
+  449  ls -lrt
+  450  cp g5plus-lustria ~/Documents/PROJECTS/NURSERY_GARDENING/
+  451  mkdir wp-content
+  452  mkdir themes
+  453  rm themes/
+  454  cd wp-content/
+  455  mkdir themes
+  456  cd themes/
+  457  cp -rp ~/Downloads/lustria17/lustria17/g5plus-lustria .
+  458  ls -lrt
+  459  git  config -- global ritz2488@gmail.com
+  460  whereis git
+  461  cd /usr/bin/git
+  462  git  config -- global ritz2488@gmail.com
+  463  ls -lrt
+  464  pwd
+  465  git init
+  466  df -h
+  467  du -a | sort -nr | head -10
+  468  cd ./Library/
+  469  du -a | sort -nr | head -10
+  470  cd ./Caches/
+  471  ls -lrt
+  472  cd ..
+  473  ls -lrt
+  474  cd Android/
+  475  du -a | sort -nr | head -10
+  476  cd ./sdk/
+  477  ls -lrt
+  478  cd system-images/
+  479  ls -lrt
+  480  rm -rf android-29/
+  481  ls -lrt
+  482  cd android-R/
+  483  ls -lrt
+  484  rm -rf google_apis/
+  485  df -gt
+  486  df -k
+  487  df -h
+  488  df -k
+  489  df -h
+  490  vi deploy.sh
+  491  ls -lrt
+  492  vi deploy.sh
+  493  chmod +x deploy.sh
+  494  git remote add origin https://github.com/riteissh/plantsnvibes.git
+  495  cp -rp ../plantsnvibes/ ../../
+  496  cd ..
+  497  tar -cvf plantsnvibes/ plantsnvibes.tar
+  498  ls -lrt
+  499  gunzip plantsnvibes
+  500  gunzip plantsnvibes/
+  501  cd plantsnvibes
+  502  git remote add origin https://github.com/riteissh/plantsnvibes.git
+  503  git remote add origin https://github.com/riteissh/plantsnvibes.git
+  504  git remote add origin https://github.com/riteissh/plants_n_vibes.git
+  505  git remote
+  506  git remote -v
+  507  git remote add plantsnvibes https://github.com/riteissh/plants_n_vibes.git
+  508  git push -u origin master
+  509  git remote add plantsnvibes https://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@https://github.com/riteissh/storify.git
+  510  git remote remove plantsnvibes
+  511  git remote add plantsnvibes https://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@https://github.com/riteissh/storify.git
+  512  git push -u plantsnvibes master
+  513  git remote add plantsnvibes https://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@github.com/riteissh/storify.git
+  514  git remote remove plantsnvibes
+  515  git remote add plantsnvibes https://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@github.com/riteissh/plantsnvibes.git
+  516  git push -u plantsnvibes master
+  517  git push -u plantsnvibes master
+  518  git remote add plantsnvibes https://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@github.com/riteissh/plantsnvibes.git
+  519  git remote remove plantsnvibes
+  520  git remote add plantsnvibes https://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@github.com/riteissh/plantsnvibes.git
+  521  git push -u plantsnvibes master
+  522  git credential-manager uninstall
+  523  git remote remove plantsnvibes
+  524  git remote add plantsnvibes https://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@github.com/riteissh/plantsnvibes.git
+  525  git push -u plantsnvibes master
+  526  gem install travis && travis --login
+  527  vi .travis.yml
+  528  ls -lrt
+  529  npm run build
+  530  ls -lrt
+  531  git remote add origin https://github.com/riteissh/plantsnvibes.git
+  532  git branch -M main
+  533  git push -u origin main
+  534  git remote add plantsnvibes https://github.com/riteissh/plantsnvibes.git
+  535  git remote remove plantsnvibes
+  536  git remote add plantsnvibes https://github.com/riteissh/plantsnvibes.git
+  537  git branch -M main
+  538  git push -u plantsnvibes main
+  539  ls -lrt
+  540  git config --global http.proxy
+  541  git remote remove plantsnvibes
+  542  git remote add plantsnvibes https://github.com/riteissh/plantsnvibes.git
+  543  git branch -M main
+  544  git push -u plantsnvibes main
+  545  git remote remove plantsnvibes
+  546  git remote add plantsnvibes https://github.com/riteissh/plantsnvibes.git
+  547  git push -u plantsnvibes main
+  548  git remote remove plantsnvibes
+  549  git remote add plantsnvibes https://github.com/riteissh/plantsnvibes.git
+  550  git branch -M main
+  551  git push -u plantsnvibes main
+  552  git credential-osxkeychain erase https://github.com
+  553  git remote remove plantsnvibes
+  554  git remote add plantsnvibes https://github.com/riteissh/plantsnvibes.git
+  555  git branch -M main
+  556  git push -u plantsnvibes main
+  557  git remote remove plantsnvibes
+  558  git remote add plantsnvibes https://github.com/riteissh/plantsnvibes.git
+  559  git branch -M main
+  560  git push -u plantsnvibes main
+  561  ls -lrt
+  562  date
+  563  git push -u plantsnvibes main
+  564  ls -lart
+  565  vi .gitignore 
+  566  git add dist && git commit -m "Initial dist subtree commit"
+  567  cd dist
+  568  git remote add prod https://github.com/riteissh/plantsnvibes.git
+  569  git push prod master
+  570  cd ..
+  571  ls -lrt
+  572  git remote remove plantsnvibes
+  573  git remote add plantsnvibes https://github.com/riteissh/plantsnvibes.git
+  574  git branch -M main
+  575  git push -u plantsnvibes main
+  576  ls -lrt
+  577  cd dist
+  578  git remote remove plantsnvibes
+  579  git remote add plantsnvibes https://github.com/riteissh/plantsnvibes.git
+  580  git branch -M main
+  581  git push -u plantsnvibes main
+  582  cd ..
+  583  git subtree push --prefix dist plantsnvibes gh-pages
+  584  cd docs/
+  585  ls -lrt
+  586  cd ..
+  587  ls -lrt
+  588  cd dist/
+  589  find . -type f -print | xargs grep -il "app/dashboard"
+  590  vi index.html 
+  591  vi js/app.c9e01676.js 
+  592  vi js/chunk-vendors.c33ce3c7.js 
+  593  find . -type f -print | xargs grep -il "app/dashboard"
+  594  vi js/app.c9e01676.js 
+  595  cd ..
+  596  git subtree push --prefix dist plantsnvibes gh-pages
+  597  ls-lrt
+  598  ls -lrt
+  599  rm -rf dist/
+  600  npm run build
+  601  cd dist/
+  602  find . -type f -print | xargs grep -il "app/dashboard"
+  603  cd ..
+  604  git subtree push --prefix dist plantsnvibes gh-pages
+  605  npm run build
+  606  git subtree push --prefix dist plantsnvibes gh-pages
+  607  cd dist/
+  608  ls -lrt
+  609  git subtree push --prefix dist plantsnvibes gh-pages
+  610  cd ..
+  611  git subtree push --prefix dist plantsnvibes gh-pages
+  612  git subtree push -f --prefix dist plantsnvibes gh-pages
+  613  git subtree push -f --prefix dist plantsnvibes gh-pages
+  614  git subtree push --prefix dist plantsnvibes gh-pages
+  615  ls -lrt
+  616  mv dist dist_bkp
+  617  npm run build
+  618  ls -lrt
+  619  git subtree push --prefix dist plantsnvibes gh-pages
+  620  gistory
+  621  history
+  622  history > git_history

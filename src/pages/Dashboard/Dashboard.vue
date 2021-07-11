@@ -1,164 +1,175 @@
 <template>
   <div class="dashboard-page">
-    <h1 class="page-title">Dashboard</h1>
+    <h1 class="page-title">Tasks</h1>
+    <div class="row">
+    <div class="col-md-12">
+        <div class="form-group form-inline pull-left VueTables__search">
+            <div class="VueTables__search-field">
+                <!--<label for="VueTables__search_Vsn4i" class=""></label><input v-model='searchKey' @keyup='searchTask(searchKey)' type="text" placeholder="Search query" id="VueTables__search_Vsn4i" autocomplete="off" class="VueTables__search__input form-control" />-->
+            </div>
+        </div>
+        <div class="form-group form-inline pull-right VueTables__limit">
+            <div class="VueTables__limit-field">
+                <label for="VueTables__limit_Vsn4i" class="">Assigned to: </label>
+                <select name="limit" id="VueTables__limit_Vsn4i" @change="onChange($event)"  class="form-control">
+                    <option value="All">All</option>
+                    <option value="Diwakar">Diwakar</option>
+                    <option value="Dhanya">Dhanya</option>
+                    <option value="Ritesh">Ritesh</option>
+                    <option value="Sharda">Sharda</option>
+                    <option value="Yogesh">Yogesh</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
     <b-row>
-      <b-col md="6" xl="3" sm="6" xs="12">
-        <div class="pb-xlg h-100">
-          <Widget class="h-100 mb-0" title="Visits Today" close>
-            <div class="d-flex justify-content-between align-items-center mb-lg">
-              <h2>4,332</h2>
-              <i class="la la-arrow-right text-primary la-lg rotate-315" />
-            </div>
-            <div class="d-flex flex-wrap justify-content-between">
-              <div class="mt">
-                <h6>+830</h6><p class="text-muted mb-0 mr"><small>Logins</small></p>
-              </div>
-              <div class="mt">
-                <h6>0.5%</h6><p class="text-muted mb-0"><small>Sign Out</small></p>
-              </div>
-              <div class="mt">
-                <h6>4.5%</h6><p class="text-muted mb-0 mr"><small>Rate</small></p>
-              </div>
-            </div>
-          </Widget>
-        </div>
-      </b-col>
-      <b-col md="6" xl="3" sm="6" xs="12">
-        <div class="pb-xlg h-100">
-          <Widget class="h-100 mb-0" title="Revenue Breakdown" close>
-            <highcharts :options="donut"></highcharts>
-          </Widget>
-        </div>
-      </b-col>
-      <b-col md="6" xl="3" sm="6" xs="12">
-        <div class="pb-xlg h-100">
-          <Widget class="h-100 mb-0" title="App Perfomance" close>
-            <p class="text-muted d-flex flex-wrap">
-              <small class="mr-lg d-flex align-items-center">
-                <span class="circle bg-danger text-danger mr-xs" style="font-size: 4px;">
-                  .
-                </span>
-                  This Period
-              </small>
-              <small class="mr-lg d-flex align-items-center">
-                <span class="circle bg-primary text-primary mr-xs" style="font-size: 4px;">
-                  .
-                </span>
-                Last Period
-              </small>
-            </p>
-            <h6>SDK</h6>
-            <b-progress class="mb-xs" style="height: 5px"
-              variant="danger" :value="60" :max="100" />
-            <b-progress class="mb" style="height: 5px"
-              variant="primary" :value="35" :max="100" />
-            <h6>Integration</h6>
-            <b-progress class="mb-xs" style="height: 5px"
-              variant="danger" :value="40" :max="100" />
-            <b-progress style="height: 5px"
-              variant="primary" :value="55" :max="100" />
-          </Widget>
-        </div>
-      </b-col>
-      <b-col md="6" xl="3" sm="6" xs="12">
-        <div class="pb-xlg h-100">
-          <Widget class="h-100 mb-0" title="Server Overview" close>
-            <div class="d-flex align-items-center mb-sm">
-              <p class="width-150"><small>60% / 37°С / 3.3 Ghz</small></p>
-              <div style="width: calc(100% - 150px)">
-                <trend
-                  :data="getRandomData()"
-                  :gradient="[appConfig.colors.danger]"
-                  :height="40"
-                  stroke-width="4"
-                  smooth />
-              </div>
-            </div>
-            <div class="d-flex align-items-center mb-sm">
-              <p class="width-150"><small>54% / 31°С / 3.3 Ghz</small></p>
-              <div style="width: calc(100% - 150px)">
-                <trend
-                  :data="getRandomData()"
-                  :gradient="[appConfig.colors.info]"
-                  :height="40"
-                  stroke-width="4"
-                  smooth />
-              </div>
-            </div>
-            <div class="d-flex align-items-center">
-              <p class="width-150"><small>57% / 21°С / 3.3 Ghz</small></p>
-              <div style="width: calc(100% - 150px)">
-                <trend
-                  :data="getRandomData()"
-                  :gradient="[appConfig.colors.primary]"
-                  :height="40"
-                  stroke-width="4"
-                  smooth />
-              </div>
-            </div>
-          </Widget>
-        </div>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col xs="12" lg="6" xl="4" v-for="stat in mock.bigStat" :key="stat.id">
+      <b-col xs="12" lg="6" xl="4" v-for="task in filteredList" :key="task.id">
+        <router-link v-bind:to="{ name: `TaskDetail`, params: { id: task.id, name: task.name  }}">
         <BigStat
-          :product="stat.product"
-          :color="stat.color"
-          :total="stat.total"
-          :registrations="stat.registrations"
-          :bounce="stat.bounce"
+          :id="task.id"
+          :name="task.name"
+          :description="task.description" 
+          :assigned_to="task.assigned_to"
+          :status="task.status"
+          :update="task.update[task.update.length -1].update"
+          :target_date="task.target_date"
+          :priority="task.priority"
         />
+        </router-link>
       </b-col>
     </b-row>
-    <b-row>
-        <b-col xs="12">
-          <Widget
-            title="<h5>Support <span class='fw-semi-bold'>Requests</span></h5>"
-            bodyClass="widget-table-overflow"
-            customHeader
-          >
-            <div class="table-responsive">
-              <table class="table table-striped table-lg mb-0 requests-table">
-                <thead>
-                  <tr class="text-muted">
-                    <th>NAME</th>
-                    <th>EMAIL</th>
-                    <th>PRODUCT</th>
-                    <th>PRICE</th>
-                    <th>DATE</th>
-                    <th>CITY</th>
-                    <th>STATUS</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr
-                    v-for="row in mock.table"
-                    :key="row.id"
-                  >
-                    <td>{{row.name}}</td>
-                    <td>{{row.email}}</td>
-                    <td>{{row.product}}</td>
-                    <td>{{row.price}}</td>
-                    <td>{{row.date}}</td>
-                    <td>{{row.city}}</td>
-                    <td>
-                      <b-badge
-                        :variant="row.status === 'Pending'
-                          ? 'success'
-                          : row.status === 'Declined' ? 'danger' : 'info'"
-                        pill
-                      >
-                        {{row.status}}
-                      </b-badge>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </Widget>
-        </b-col>
-      </b-row>
+  
+  
+  <div class="circle-div" @click="showModal"></div>
+
+  <div ref="modal" v-if="isShow" id="long" role="dialog" aria-labelledby="long___BV_modal_title_" aria-describedby="long___BV_modal_body_" class="modal fade show" aria-modal="true" style="display: block; padding-left: 0px;">
+    <div class="modal-dialog modal-md">
+        <span tabindex="0"></span>
+        <div id="long___BV_modal_content_" tabindex="-1" class="modal-content">
+            <header id="long___BV_modal_header_" class="modal-header">
+                <h5 id="long___BV_modal_title_" class="modal-title">Add Task</h5>
+                <button type="button" aria-label="Close" class="close" @click="closeModal">×</button>
+            </header>
+            <form class="pr-3 pl-3 pt-3 pb-3" @submit.prevent="onFormSubmit">
+    
+    <div role="group" class="form-row form-group" horizontal="" breakpoint="md" id="__BVID__533">
+        <label for="normal-field" class="col-4 col-form-label text-md-right" id="__BVID__533__BV_label_">Task Name</label>
+        <div class="col">
+            <input id="normal-field" type="text" placeholder="Name of the task" class="form-control" v-model="task_name"/>
+            <!----><!----><!---->
+        </div>
+    </div>
+    <div role="group" class="form-row form-group" horizontal="" breakpoint="md" id="__BVID__533">
+        <label for="normal-field" class="col-4 col-form-label text-md-right" id="__BVID__533__BV_label_">Task Description</label>
+        <div class="col">
+            <textarea id="default-textarea" rows="3" wrap="soft" class="form-control" placeholder="Description" spellcheck="false" data-gramm="false" v-model="task_description"></textarea>
+            <!----><!----><!---->
+        </div>
+    </div>
+
+    <div role="group" class="form-row form-group" horizontal="" id="__BVID__631">
+      <label for="simple-select" class="col-4 col-form-label text-right" id="__BVID__631__BV_label_">Assign to</label>
+      <div class="col">
+          <div id="simple-select" class="dropdown b-dropdown btn-group" aria-describedby="__BVID__631__BV_description_">
+              <!---->
+              <!--<button id="simple-select__BV_toggle_" aria-haspopup="true" aria-expanded="false" type="button" class="btn dropdown-toggle btn-default">Ritesh</button>
+              <ul role="menu" tabindex="-1" aria-labelledby="simple-select__BV_toggle_" class="dropdown-menu" style="">
+                  <li role="presentation"><button role="menuitem" type="button" class="dropdown-item" >Diwakar</button></li>
+                  <li role="presentation"><button role="menuitem" type="button" class="dropdown-item">Sharda</button></li>
+                  <li role="presentation"><button role="menuitem" type="button" class="dropdown-item">Yogesh</button></li>
+                  <li role="presentation"><button role="menuitem" type="button" class="dropdown-item">Dhanya</button></li>
+              </ul>-->
+              <select v-model="task_assigned_to" class="btn dropdown-toggle btn-default">
+                <option class="dropdown-item" value="Diwakar">Diwakar</option>
+                <option class="dropdown-item">Dhanya</option>
+                <option class="dropdown-item">Ritesh</option>
+                <option class="dropdown-item">Sharda</option>                
+                <option class="dropdown-item">Yogesh</option>
+              </select>
+          </div>
+        </div>
+    </div>
+    <div role="group" class="form-row form-group" horizontal="" id="__BVID__631">
+      <label for="simple-select" class="col-4 col-form-label text-right" id="__BVID__631__BV_label_">Project Status</label>
+      <div class="col">
+          <div id="simple-select" class="dropdown b-dropdown btn-group" aria-describedby="__BVID__631__BV_description_">
+              <!---->
+              <!--<button id="simple-select__BV_toggle_" aria-haspopup="true" aria-expanded="false" type="button" class="btn dropdown-toggle btn-default">Not Initiated</button>
+              <ul role="menu" tabindex="-1" aria-labelledby="simple-select__BV_toggle_" class="dropdown-menu" style="">
+                  <li role="presentation"><button role="menuitem" type="button" class="dropdown-item">Initiated</button></li>
+                  <li role="presentation"><button role="menuitem" type="button" class="dropdown-item">In-Progress</button></li>
+                  <li role="presentation"><button role="menuitem" type="button" class="dropdown-item">Completed</button></li>
+              </ul>-->
+              <select v-model="task_status" class="btn dropdown-toggle btn-default">
+                <option class="dropdown-item" value="Not Initiated">Not Initiated</option>
+                <option class="dropdown-item">Initiated</option>
+                <option class="dropdown-item">In-Progress</option>
+                <option class="dropdown-item">Completed</option>                
+              </select>
+          </div>
+        </div>
+    </div>
+
+    <div role="group" class="form-row form-group" horizontal="" breakpoint="md" id="__BVID__533">
+      <label for="normal-field" class="col-4 col-form-label text-md-right" id="__BVID__533__BV_label_">Target Date</label>
+      <div class="col">
+        <b-form-datepicker id="example-datepicker" v-model="targetDate" class="mb-2"></b-form-datepicker>
+      </div>  
+    </div>
+    <div role="group" class="form-row form-group" horizontal="" breakpoint="md" id="__BVID__533">
+      <label for="normal-field" class="col-4 col-form-label text-md-right" id="__BVID__533__BV_label_">Task Priority</label>
+      <div class="col">
+          <div id="simple-select" class="dropdown b-dropdown btn-group" aria-describedby="__BVID__631__BV_description_">
+              <!---->
+              <!--<button id="simple-select__BV_toggle_" aria-haspopup="true" aria-expanded="false" type="button" class="btn dropdown-toggle btn-default">Not Initiated</button>
+              <ul role="menu" tabindex="-1" aria-labelledby="simple-select__BV_toggle_" class="dropdown-menu" style="">
+                  <li role="presentation"><button role="menuitem" type="button" class="dropdown-item">Initiated</button></li>
+                  <li role="presentation"><button role="menuitem" type="button" class="dropdown-item">In-Progress</button></li>
+                  <li role="presentation"><button role="menuitem" type="button" class="dropdown-item">Completed</button></li>
+              </ul>-->
+              <select v-model="taskPriority" class="btn dropdown-toggle btn-default">
+                <option class="dropdown-item" value="1">High</option>
+                <option class="dropdown-item" value="2">Medium</option>
+                <option class="dropdown-item" value="3">Low</option>
+              </select>
+          </div>
+      </div>  
+    </div>  
+    
+    <div role="group" class="form-row form-group" horizontal="" breakpoint="md" id="__BVID__533">
+        <label for="normal-field" class="col-4 col-form-label text-md-right" id="__BVID__533__BV_label_">Task Progress Update</label>
+        <div class="col">
+            <textarea id="default-textarea" rows="3" wrap="soft" class="form-control" placeholder="Update" spellcheck="false" data-gramm="false" v-model="task_update"></textarea>
+            <!----><!----><!---->
+        </div>
+    </div>
+
+    
+    
+    
+    <div role="group" class="form-row form-group form-action bg-transparent pl-1" horizontal="" breakpoint="md" id="__BVID__554">
+        <label for="transparent-field" class="col-4 col-form-label"></label>
+        <div class="col">
+            <button type="submit" class="btn ml-0 mr-3 btn-primary" >Submit</button>
+            <button type="button" class="btn btn-inverse" @click="closeModal">Cancel</button>
+            <!----><!----><!---->
+        </div>
+    </div>
+</form>
+
+            <!--<footer id="long___BV_modal_footer_" class="modal-footer"><button type="button" @click="closeModal" class="btn btn-default">Cancel</button>
+            <button type="button" class="btn btn-primary">Submit</button></footer>-->
+        </div>
+        <span tabindex="0"></span>
+    </div>
+</div>
+
+  
+  
+  
   </div>
 </template>
 
@@ -166,6 +177,9 @@
 import Widget from '@/components/Widget/Widget';
 import BigStat from './components/BigStat/BigStat';
 import mock from './mock';
+import { mapGetters } from "vuex";
+import { db } from '../../main';
+
 
 import { Chart } from 'highcharts-vue';
 
@@ -176,8 +190,31 @@ export default {
   },
   data() {
     return {
-      mock
+      mock,
+      isShow : false,
+      task_name : '',
+      task_description : '',
+      task_assigned_to : '',
+      task_update : [],
+      task_status : '',
+      user :{},
+      taskList : [],
+      task : {
+      },
+      
+      update : [],
+      filteredList : [],
+      searchKey : '',
+      targetDate : '',
+      taskPriority : ''
+      
     };
+  },
+  created () {
+    
+    this.user = this.$store.getters.user;
+    console.log(this.user)
+    this.getTaskList()
   },
   methods: {
     getRandomData() {
@@ -202,10 +239,103 @@ export default {
       }
 
       return data;
-    }
+    },
+    showModal() {
+      //let element = this.$refs.modal.$el
+      //$(element).modal('show')
+      this.isShow = true
+    },
+    closeModal() {
+      this.isShow = false
+    },
+    onFormSubmit(event) {
+      let tempUpdate = {
+        update_on : new Date(),
+        update : this.task_update
+      }
+
+      this.update.push(tempUpdate)
+
+      this.task = {
+        name : this.task_name,
+        description : this.task_description,
+        assigned_to : this.task_assigned_to,
+        status : this.task_status,
+        target_date : this.targetDate,
+        priority : this.taskPriority,
+        update : this.update,
+        added_on : new Date(),
+        added_by_name : this.$store.getters.user.data.displayName,
+        added_by_email : this.$store.getters.user.data.email,
+      }
+      event.preventDefault()
+      db.collection('tasks').add(this.task).then(() => {
+          alert("Task added successfully!");
+          this.task_name = ''
+          this.task_description = ''
+          this.isShow = false
+          this.targetDate = ''
+          this.taskPriority = ''
+      }).catch((error) => {
+          console.log(error);
+      });
+    },
+    
+    getTaskList() {
+      
+      db.collection("tasks")
+        .orderBy('priority')
+        .onSnapshot( snap  => {
+          this.taskList = [];
+          snap.forEach((doc) => {
+           this.taskList.push({
+              id: doc.id,
+              name: doc.data().name,
+              description: doc.data().description,
+              assigned_to: doc.data().assigned_to,
+              status: doc.data().status,
+              priority: doc.data().priority,
+              target_date: doc.data().target_date,
+              added_on: doc.data().added_on,
+              update: doc.data().update
+            });
+            //console.log(doc.id, " => ", doc.data());
+          });
+          this.filteredList = this.taskList     
+          return this.taskList
+        })
+        .catch((error) => {
+          console.log("Error getting documents: ", error);
+        });
+    },
+    onChange(event) {
+        this.filteredList = this.taskList     
+        if (event.target.value != "All") {
+            this.filteredList = this.taskList.filter(item => item.assigned_to == event.target.value)
+        }
+        else {
+          this.filteredList = this.taskList
+        }    
+    },
+    searchTask(searchKey) {
+        console.log(searchKey.toLowerCase())
+        
+        if (this.searchKey.length >= 3 ) {
+            this.filteredList = this.taskList     
+            this.filteredList = this.taskList.filter(item => item.name == searchKey.toLowerCase() )
+            console.log(this.filteredList)
+            //|| item.description == searchKey.toLowerCase() || item.update == searchKey.toLowerCase())
+        }
+        else {
+          this.filteredList = this.taskList
+        }
+    } 
   },
   computed: {
-    donut() {
+    ...mapGetters({
+      user: "user"
+    })
+  /*  donut() {
       let revenueData = this.getRevenueData();
       let {danger, info, primary} = this.appConfig.colors;
       let series = [
@@ -265,8 +395,24 @@ export default {
         series
       };
     }
+  }*/
   }
 };
 </script>
 
 <style src="./Dashboard.scss" lang="scss" />
+<style scoped>
+.circle-div {
+    
+    background-image: url("../../assets/icons/plus.png");
+    height: 40px;
+    width: 40px;
+    background-size: 40px;
+    position: fixed;
+    bottom: 50px;
+    right: 25px;
+    
+    
+    
+}
+</style>

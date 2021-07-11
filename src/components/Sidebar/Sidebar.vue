@@ -6,7 +6,7 @@
         @mouseleave="sidebarMouseLeave"
     >
       <header class="logo">
-        <router-link to="/app/dashboard"><span class="primary-word">Sing</span> <span class="secondary-word"> App</span></router-link>
+        <router-link to="/app/dashboard"><span class="primary-word">Plants N </span> <span class="secondary-word"> Vibes</span></router-link>
       </header>
       <h5 class="navTitle first">
         APP
@@ -20,7 +20,7 @@
             index="dashboard"
             isHeader
         />
-        <NavLink
+        <!--<NavLink
             :activeItem="activeItem"
             header="Typography"
             link="/app/typography"
@@ -55,9 +55,9 @@
               { header: 'Icons', link: '/app/components/icons' },
               { header: 'Maps', link: '/app/components/maps' },
             ]"
-        />
+        />-->
       </ul>
-      <h5 class="navTitle">
+      <!--<h5 class="navTitle">
         LABELS
       </h5>
       <ul class="sidebarLabels">
@@ -79,8 +79,8 @@
             <span class="labelName">Forms</span>
           </a>
         </li>
-      </ul>
-      <h5 class="navTitle">
+      </ul>-->
+      <!--<h5 class="navTitle">
         PROJECTS
       </h5>
       <div class="sidebarAlerts">
@@ -95,7 +95,7 @@
                       :variant="alert.color" :value="alert.value" :max="100"/>
           <small>{{alert.footer}}</small>
         </b-alert>
-      </div>
+      </div>-->
     </nav>
   </div>
 </template>

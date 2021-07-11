@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve --port 3000",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "start": "node server.js"
+    "start": "node server.js",
+    "deploy": "sh deploy.sh"
   },
   "dependencies": {
     "animate.css": "^4.1.1",
@@ -17,6 +18,7 @@
     "css-loader": "^1.0.1",
     "echarts": "^4.9.0",
     "expose-loader": "^0.7.5",
+    "firebase": "^8.6.8",
     "font-awesome": "4.7.0",
     "glyphicons-halflings": "^1.9.1",
     "highcharts": "^7.2.2",
@@ -53,7 +55,9 @@
       "plugin:vue/essential",
       "eslint:recommended"
     ],
-    "rules": {},
+    "rules": {
+      "no-console": "off"
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }
